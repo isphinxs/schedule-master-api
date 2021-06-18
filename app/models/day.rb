@@ -1,3 +1,4 @@
 class Day < ApplicationRecord
-  belongs_to :calendar
+  has_many :notes
+  has_many :calendars, through: :notes
 end

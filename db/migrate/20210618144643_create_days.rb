@@ -1,10 +1,10 @@
 class CreateDays < ActiveRecord::Migration[6.1]
   def change
     create_table :days do |t|
-      t.string :title
-      t.string :month
-      t.string :day
-      t.references :calendar, null: false, foreign_key: true
+      t.integer :day
+      t.integer :month
+      t.integer :year
+      t.string :weekday
 
       t.timestamps
     end
