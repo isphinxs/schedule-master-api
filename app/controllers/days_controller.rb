@@ -5,12 +5,16 @@ class DaysController < ApplicationController
   def index
     days = Day.all
 
-    render json: days
+    render json: days, only: [:id, :day, :month, :year, :weekday]
   end
 
   # GET /days/1
   def show
-    render json: day
+    if @day
+      render json: @day, only: [:id, :day, :month, :year, :weekday]
+    else
+      render json: { message: "Day not found" }
+    end
   end
 
   # POST /days
@@ -41,11 +45,11 @@ class DaysController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_day
-      day = Day.find(params[:id])
+      @day = Day.find_by(id: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def day_params
-      params.require(:day).permit(:title, :month, :day, :calendar_id)
+      params.require(:day).permit(:day, :month, :year, :weekday, :calendar_id)
     end
 end
