@@ -10,12 +10,24 @@ class CalendarsController < ApplicationController
 
   # GET /calendars/1
   def show
-    render json: calendar
+    if @calendar
+      render json: calendar
+    else
+      render json: { message: "Calendar not found" }
+    end
   end
 
   # POST /calendars
   def create
-    calendar = Calendar.new(calendar_params)
+    parsed_calendar_params = {
+      title: calendar_params[:title],
+      start_month: calendar_params[:start_month].to_i,
+      start_year: calendar_params[:start_year].to_i,
+      end_month: calendar_params[:end_month].to_i,
+      end_year: calendar_params[:end_year].to_i
+    }
+
+    calendar = Calendar.new(parsed_calendar_params)
 
     if calendar.save
       render json: calendar, status: :created, location: calendar
@@ -41,11 +53,11 @@ class CalendarsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_calendar
-      calendar = Calendar.find(params[:id])
+      @calendar = Calendar.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def calendar_params
-      params.require(:calendar).permit(:title)
+      params.require(:calendar).permit(:title, :start_month, :start_year, :end_month, :end_year)
     end
 end
