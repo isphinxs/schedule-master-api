@@ -11,9 +11,9 @@ class CalendarsController < ApplicationController
   # GET /calendars/1
   def show
     if @calendar
-      render json: calendar
+      render json: @calendar
     else
-      render json: { message: "Calendar not found" }
+      render json: { message: "Calendar not found. Please try again." }
     end
   end
 
@@ -38,16 +38,20 @@ class CalendarsController < ApplicationController
 
   # PATCH/PUT /calendars/1
   def update
-    if calendar.update(calendar_params)
-      render json: calendar
+    if @calendar.update(calendar_params)
+      render json: @calendar
     else
-      render json: calendar.errors, status: :unprocessable_entity
+      render json: @calendar.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /calendars/1
   def destroy
-    calendar.destroy
+    if @calendar.destroy
+      render json: { message: "Calendar successfully deleted." }
+    else
+      render json: { message: "Error deleting calendar. Please try again." }
+    end
   end
 
   private
