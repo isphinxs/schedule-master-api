@@ -10,7 +10,7 @@ class NotesController < ApplicationController
 
   # GET /notes/1
   def show
-    render json: note
+    render json: @note
   end
 
   # POST /notes
@@ -26,10 +26,10 @@ class NotesController < ApplicationController
 
   # PATCH/PUT /notes/1
   def update
-    if note.update(note_params)
-      render json: note
+    if @note.update(note_params)
+      render json: @note
     else
-      render json: note.errors, status: :unprocessable_entity
+      render json: @note.errors, status: :unprocessable_entity
     end
   end
 
@@ -41,7 +41,7 @@ class NotesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_note
-      note = Note.find(params[:id])
+      @note = Note.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
