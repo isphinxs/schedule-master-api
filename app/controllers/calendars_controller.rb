@@ -32,7 +32,8 @@ class CalendarsController < ApplicationController
     if calendar.save
       render json: calendar, status: :created, location: calendar
     else
-      render json: calendar.errors, status: :unprocessable_entity
+      # render json: calendar.errors
+      render json: { message: "Title has already been taken. Please try again." }
     end
   end
 
