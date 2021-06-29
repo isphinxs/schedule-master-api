@@ -1,24 +1,23 @@
-# README
+# Scheduling Calendar API 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Rails API serving a simple front-end calendar app written in JavaScript. This app aims to make it easier to visualize potential days to schedule meetings and events.
 
-Things you may want to cover:
+# Installation
 
-* Ruby version
+Clone this repository, run `bundle install`, `rails db:migrate`, and `rails db:seed`. To start the server, run `rails s`. This repository runs the application's back end; you will also need to install the front end available at https://github.com/isphinxs/schedule-master-client.
 
-* System dependencies
+# Usage
 
-* Configuration
+This Rails server supports a front-end calendar app. Users can create Calendars and add Notes to those calendars following RESTful conventions.
 
-* Database creation
+# Contributing
 
-* Database initialization
+Bug reports and pull requests are welcome on GitHub at https://github.com/isphinxs/schedule-master-api. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/isphinxs/schedule-master-api/blob/main/CODE_OF_CONDUCT.md).
 
-* How to run the test suite
+## License
 
-* Services (job queues, cache servers, search engines, etc.)
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-* Deployment instructions
+## Code of Conduct
 
-* ...
+Everyone interacting in the Scheduling Calendar project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/isphinxs/schedule-master-api/blob/main/CODE_OF_CONDUCT.md).
