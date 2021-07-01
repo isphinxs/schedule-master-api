@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_18_144805) do
+ActiveRecord::Schema.define(version: 2021_07_01_231003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,13 +38,11 @@ ActiveRecord::Schema.define(version: 2021_06_18_144805) do
     t.string "content"
     t.boolean "is_active", default: true
     t.bigint "calendar_id", null: false
-    t.bigint "day_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "day"
     t.index ["calendar_id"], name: "index_notes_on_calendar_id"
-    t.index ["day_id"], name: "index_notes_on_day_id"
   end
 
   add_foreign_key "notes", "calendars"
-  add_foreign_key "notes", "days"
 end
