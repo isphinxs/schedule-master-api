@@ -5,7 +5,7 @@ class CalendarsController < ApplicationController
   def index
     calendars = Calendar.all
 
-    render json: calendars
+    render json: calendars, include: [:notes]
   end
 
   # GET /calendars/1
@@ -33,7 +33,7 @@ class CalendarsController < ApplicationController
       render json: calendar, status: :created, location: calendar
     else
       # render json: calendar.errors
-      render json: { message: "Title has already been taken. Please try again." }
+      render json: { values: parsed_calendar_params, message: "Title has already been taken. Please try again." }
     end
   end
 
@@ -42,7 +42,7 @@ class CalendarsController < ApplicationController
     if @calendar.update(calendar_params)
       render json: @calendar
     else
-      render json: @calendar.errors, status: :unprocessable_entity
+      render json: { message: "Title has already been taken. Please try again." }
     end
   end
 
